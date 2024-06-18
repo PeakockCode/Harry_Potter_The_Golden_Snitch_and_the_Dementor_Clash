@@ -6,7 +6,7 @@ from src.game import Game
 from src.dementor import Dementor
 from src.player import Player
 from src.golden_snitch import GoldenSnitch
-from src.bludger import Bludger
+from src.enemy import Enemy
 
 
 if __name__ == "__main__":
@@ -37,9 +37,9 @@ if __name__ == "__main__":
     # add bludger
     bludger_group = pygame.sprite.Group()
     for _ in range(consts.NUMBER_OF_BLUDGERS):
-        bludger = Bludger(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
-                          consts.GAME_TOP_SPACING, consts.BLUDGER_MIN_SPEED,
-                          consts.BLUDGER_MAX_SPEED, consts.BLUDGER_PATH)
+        bludger = Enemy(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
+                        consts.GAME_TOP_SPACING, consts.BLUDGER_MIN_SPEED,
+                        consts.BLUDGER_MAX_SPEED, consts.BLUDGER_PATH)
         bludger_group.add(bludger)
 
     # add player
