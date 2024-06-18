@@ -187,8 +187,8 @@ class Game:
         self.golden_snitch_group.empty()
         # filling golden_snitch_group
         self.golden_snitch_group.add(GoldenSnitch(self.resolution, self.bottom_spacing,
-                                                  self.top_spacing, self.golden_snitch_images_paths,
-                                                  self.golden_snitch_min_speed, self.golden_snitch_max_speed))
+                                                  self.top_spacing, self.golden_snitch_min_speed,
+                                                  self.golden_snitch_max_speed, self.golden_snitch_images_paths))
 
         # clear dementor group to enter new amount of dementors
         self.dementor_group.empty()
@@ -197,7 +197,7 @@ class Game:
         for path in self.dementor_paths:
             for count in range(self.round_number):
                 self.dementor_group.add(Dementor(self.resolution, self.bottom_spacing, self.top_spacing,
-                                                 path, self.min_speed, self.max_speed, dementor_type))
+                                                 self.min_speed, self.max_speed, (path,), dementor_type))
             dementor_type += 1
         # new dementor to catch
         self.choose_new_target()

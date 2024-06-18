@@ -29,14 +29,14 @@ BG_MUSIC = "assets/media/music/bg-music-hp.wav"
 # Enemies
 DEMENTOR_MIN_SPEED = 1
 DEMENTOR_MAX_SPEED = 5
-DEMENTOR_PATH_TYPE_0 = "assets/images/dementors/dementor_blue.png"
-DEMENTOR_PATH_TYPE_1 = "assets/images/dementors/dementor_green.png"
-DEMENTOR_PATH_TYPE_2 = "assets/images/dementors/dementor_purple.png"
-DEMENTOR_PATH_TYPE_3 = "assets/images/dementors/dementor_yellow.png"
-DEMENTOR_IMAGES_PATH = [DEMENTOR_PATH_TYPE_0,
-                        DEMENTOR_PATH_TYPE_1,
-                        DEMENTOR_PATH_TYPE_2,
-                        DEMENTOR_PATH_TYPE_3]
+DEMENTOR_PATH_TYPE_0 = ("assets/images/dementors/dementor_blue.png",)
+DEMENTOR_PATH_TYPE_1 = ("assets/images/dementors/dementor_green.png",)
+DEMENTOR_PATH_TYPE_2 = ("assets/images/dementors/dementor_purple.png",)
+DEMENTOR_PATH_TYPE_3 = ("assets/images/dementors/dementor_yellow.png",)
+DEMENTOR_IMAGES_PATH = ["assets/images/dementors/dementor_blue.png",
+                        "assets/images/dementors/dementor_green.png",
+                        "assets/images/dementors/dementor_purple.png",
+                        "assets/images/dementors/dementor_yellow.png"]
 # enemies colors
 BLUE = (21, 31, 217)
 GREEN = (24, 194, 38)
@@ -53,9 +53,9 @@ GOLDEN_SNITCH_PATHS = (GOLDEN_SNITCH_PATH_LEFT, GOLDEN_SNITCH_PATH_RIGHT)
 NUMBER_OF_GOLDEN_SNITCHES = 1
 
 # Bludger
-BLUDGER_MIN_SPEED = 6
-BLUDGER_MAX_SPEED = 8
-BLUDGER_PATH = "assets/images/bludger/bludger.png"
+BLUDGER_MIN_SPEED = 8
+BLUDGER_MAX_SPEED = 10
+BLUDGER_PATH = ("assets/images/bludger/bludger.png", )
 NUMBER_OF_BLUDGERS = 2
 
 # Player

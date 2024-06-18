@@ -22,25 +22,24 @@ if __name__ == "__main__":
     for _ in range(len(consts.DEMENTOR_IMAGES_PATH)):
         dementor = Dementor(consts.GAME_RESOLUTION,
                             consts.GAME_BOTTOM_SPACING, consts.GAME_TOP_SPACING,
-                            consts.DEMENTOR_IMAGES_PATH[_],
                             consts.DEMENTOR_MIN_SPEED, consts.DEMENTOR_MAX_SPEED,
-                            _)
+                            (consts.DEMENTOR_IMAGES_PATH[_],), _)
         dementor_group.add(dementor)
 
     # add golden_snitch
     golden_snitch_group = pygame.sprite.Group()
     for _ in range(consts.NUMBER_OF_GOLDEN_SNITCHES):
         golden_snitch = GoldenSnitch(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
-                                     consts.GAME_TOP_SPACING, consts.GOLDEN_SNITCH_PATHS,
-                                     consts.GOLDEN_SNITCH_BASE_MIN_SPEED, consts.GOLDEN_SNITCH_BASE_MAX_SPEED)
+                                     consts.GAME_TOP_SPACING, consts.GOLDEN_SNITCH_BASE_MIN_SPEED,
+                                     consts.GOLDEN_SNITCH_BASE_MAX_SPEED, consts.GOLDEN_SNITCH_PATHS)
         golden_snitch_group.add(golden_snitch)
 
     # add bludger
     bludger_group = pygame.sprite.Group()
     for _ in range(consts.NUMBER_OF_BLUDGERS):
         bludger = Bludger(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
-                          consts.GAME_TOP_SPACING, consts.BLUDGER_PATH,
-                          consts.BLUDGER_MIN_SPEED, consts.BLUDGER_MAX_SPEED)
+                          consts.GAME_TOP_SPACING, consts.BLUDGER_MIN_SPEED,
+                          consts.BLUDGER_MAX_SPEED, consts.BLUDGER_PATH)
         bludger_group.add(bludger)
 
     # add player
