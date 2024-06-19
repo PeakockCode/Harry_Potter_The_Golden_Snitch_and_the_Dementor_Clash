@@ -40,12 +40,12 @@ class Scoreboard(customtkinter.CTk):
 
         # Heading frame - add labels
         self.name_label = customtkinter.CTkLabel(self.heading_frame, width=100, height=13,
-                                                 text="Reveal your name for the Hogwarts records...",
+                                                 text="Reveal your name for the records...",
                                                  text_color=self.main_color)
-        self.name_label.grid(row=0, column=0, padx=1, pady=2, ipadx=1, sticky="W")
+        self.name_label.grid(row=0, column=0, padx=(0, 1), pady=2, ipadx=1, sticky="nw")
         self.score_label = customtkinter.CTkLabel(self.heading_frame, text="Score:",
-                                                  width=35, height=13, text_color=self.main_color)
-        self.score_label.grid(row=0, column=1, padx=100, pady=2, ipadx=1, sticky="S")
+                                                  width=290, height=13, text_color=self.main_color)
+        self.score_label.grid(row=0, column=1, padx=(1, 0), pady=2, ipadx=1, sticky="nw")
 
         # results frame - create results list with scrollbar
         self.results_list = tkinter.Listbox(self.results_frame, width=35, height=13, selectborderwidth=3,
@@ -59,14 +59,14 @@ class Scoreboard(customtkinter.CTk):
         # input frame - name input, score
         self.name_input = customtkinter.CTkEntry(self.input_frame, width=270)
         self.name_input.grid(row=0, column=0, padx=4, pady=2, sticky="nw")
-        self.score_label = customtkinter.CTkLabel(self.input_frame, text=self.score, width=115)
-        self.score_label.grid(row=0, column=1, padx=6, pady=2, sticky="nw")
+        self.score_label = customtkinter.CTkLabel(self.input_frame, text=self.score, width=120)
+        self.score_label.grid(row=0, column=1, padx=4, pady=2, sticky="E")
         self.add_score_button = customtkinter.CTkButton(self.input_frame, text="Add score", width=10,
                                                         fg_color=self.button_color, hover_color=self.button_hover_color,
                                                         border_width=1, command=self.add_score)
         self.add_score_button.grid(row=0, column=2, padx=6, pady=2, ipadx=1, sticky="ne")
         # warning frame - warning info line (show warning when it is necessary)
-        self.warning_info = customtkinter.CTkLabel(self.warning_frame, text="", width=480, height=10)
+        self.warning_info = customtkinter.CTkLabel(self.warning_frame, text="", width=478, height=10)
         self.warning_info.grid(row=0, column=0, padx=4, pady=4, ipadx=2, ipady=2, sticky="news")
 
         # button frame
@@ -138,3 +138,16 @@ class Scoreboard(customtkinter.CTk):
                     self.results_list.insert(tkinter.END, one_line)
         except FileExistsError:
             print("Error. Cannot find file with tasks.")
+
+
+# SCOREBOARD_TITLE = "Harry Potter: The Golden Snitch and The Dementor Clash"
+# SCOREBOARD_GEOMETRY = "550x500+700+250"
+# SCOREBOARD_ICON = "../assets/images/icons/hp_icon.ico"
+# SCOREBOARD_FONT_TYPE_PATH = "../assets/fonts/Harry.ttf",
+# SCOREBOARD_TEXT_COLOR = "#EEBA30"
+# SCOREBOARD_BUTTON_COLOR = "#740001"
+# SCOREBOARD_HOVER_COLOR = "#AE0001"
+# SCOREBOARD_TXT_FILE_PATH = "../results/score.txt"
+# scoreboard = Scoreboard(SCOREBOARD_TITLE, SCOREBOARD_GEOMETRY, SCOREBOARD_ICON, SCOREBOARD_TEXT_COLOR,
+#                         SCOREBOARD_BUTTON_COLOR, SCOREBOARD_HOVER_COLOR, SCOREBOARD_TXT_FILE_PATH, 2555)
+# scoreboard.mainloop()

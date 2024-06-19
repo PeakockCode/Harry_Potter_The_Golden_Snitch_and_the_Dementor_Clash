@@ -9,7 +9,7 @@ GAME_BOTTOM_SPACING = 100
 GAME_TOP_SPACING = 100
 SCREEN_MARGIN = 5
 PLAYGROUND_BORDER_WIDTH = 5
-SCREEN_TITLE = "Harry Potter: The Wizard's fight"
+SCREEN_TITLE = "Harry Potter: The Golden Snitch and The Dementor Clash"
 GAME_TITLE = "Harry Potter: The Golden Snitch and The Dementor Clash"
 LAUNCH_TEXT = "Press enter to play"
 
