@@ -83,7 +83,7 @@ class Scoreboard(customtkinter.CTk):
                                                   command=self.save_results)
         self.quit_table = customtkinter.CTkButton(self.button_frame, text="Quit", width=5, border_width=1,
                                                   fg_color=self.button_color, hover_color=self.button_hover_color,
-                                                  command=self.destroy)
+                                                  command=self.close_scoreboard)
         self.remove_score.grid(row=0, column=0, padx=5, pady=8, ipadx=10)
         self.clear_table.grid(row=0, column=1, padx=5, pady=8, ipadx=10)
         self.save_score.grid(row=0, column=2, padx=5, pady=8, ipadx=10)
@@ -125,6 +125,10 @@ class Scoreboard(customtkinter.CTk):
                     results_file.write(f"{one_result}")
                 else:
                     results_file.write(f"{one_result}\n")
+
+    def close_scoreboard(self):
+        self.withdraw()
+        self.quit()
 
     def load_results(self):
         # Loads tasks from a text file to show scoreboard
