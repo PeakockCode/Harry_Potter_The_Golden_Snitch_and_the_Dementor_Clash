@@ -90,7 +90,7 @@ class Scoreboard(customtkinter.CTk):
         self.quit_table.grid(row=0, column=3, padx=5, pady=8, ipadx=10)
 
         # load results to the table
-        self.load_results()
+        self.after(100, self.load_results())
 
     def add_score(self):
         # Adds a new player and score to the list

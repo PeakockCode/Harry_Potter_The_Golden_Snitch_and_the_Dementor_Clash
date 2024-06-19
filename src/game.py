@@ -241,7 +241,6 @@ class Game:
         self.window.blit(source=main_text_create, dest=main_text_create_rect)
         self.window.blit(source=subheading_text_create, dest=subheading_text_create_rect)
         pygame.display.update()
-
         # pause_game
         paused = True
         while paused:
