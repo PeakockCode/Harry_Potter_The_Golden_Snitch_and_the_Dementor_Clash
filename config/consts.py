@@ -1,3 +1,4 @@
+# GAME
 # Base game settings
 PLAYGROUND_WIDTH = 1200
 PLAYGROUND_HEIGHT = 700
@@ -75,3 +76,13 @@ PLAYER_SUCCESS_SOUND = "assets/media/sounds/expecto-patronum.mp3"
 PLAYER_FAILURE_SOUND = "assets/media/sounds/wrong.wav"
 PLAYER_CATCH_SOUND = "assets/media/sounds/cheers_sound.wav"
 PLAYER_HIT_SOUND = "assets/media/sounds/bludger_hit.wav"
+
+# SCOREBOARD
+SCOREBOARD_TITLE = "Harry Potter: The Golden Snitch and The Dementor Clash"
+SCOREBOARD_GEOMETRY = "550x500+700+250"
+SCOREBOARD_ICON = "assets/images/icons/hp_icon.ico"
+SCOREBOARD_FONT_TYPE_PATH = "../assets/fonts/Harry.ttf",
+SCOREBOARD_TEXT_COLOR = "#EEBA30"
+SCOREBOARD_BUTTON_COLOR = "#740001"
+SCOREBOARD_HOVER_COLOR = "#AE0001"
+SCOREBOARD_TXT_FILE_PATH = "results/score.txt"

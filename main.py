@@ -59,7 +59,10 @@ if __name__ == "__main__":
                    dementor_group, consts.BG_MUSIC, consts.GAME_FONT, consts.FONT_COLOR,
                    consts.SCORE_TEXT_FONT_SIZE, consts.MAIN_TEXT_FONT_SIZE, consts.DEMENTOR_IMAGES_PATH,
                    consts.DEMENTOR_COLORS, consts.DEMENTOR_MIN_SPEED, consts.DEMENTOR_MAX_SPEED,
-                   consts.GOLDEN_SNITCH_PATHS, consts.GOLDEN_SNITCH_BASE_MIN_SPEED, consts.GOLDEN_SNITCH_BASE_MAX_SPEED)
+                   consts.GOLDEN_SNITCH_PATHS, consts.GOLDEN_SNITCH_BASE_MIN_SPEED, consts.GOLDEN_SNITCH_BASE_MAX_SPEED,
+                   consts.SCOREBOARD_TITLE, consts.SCOREBOARD_GEOMETRY, consts.SCOREBOARD_ICON,
+                   consts.SCOREBOARD_TEXT_COLOR, consts.SCOREBOARD_BUTTON_COLOR,
+                   consts.SCOREBOARD_HOVER_COLOR, consts.SCOREBOARD_TXT_FILE_PATH)
 
     # main game cycle
     running = True

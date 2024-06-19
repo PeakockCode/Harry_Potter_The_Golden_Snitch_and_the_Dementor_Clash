@@ -3,6 +3,7 @@ import pygame
 import sys
 from src.dementor import Dementor
 from src.golden_snitch import GoldenSnitch
+from src.scoreboard import Scoreboard
 
 
 class Game:
@@ -15,7 +16,10 @@ class Game:
                  hud_font_color, hud_font_size, main_text_font_size,
                  dementor_images_path: list, list_of_dementor_colors: tuple,
                  dementor_min_speed: int, dementor_max_speed: int, golden_snitch_images_paths: tuple,
-                 golden_snitch_min_speed: int, golden_snitch_max_speed: int):
+                 golden_snitch_min_speed: int, golden_snitch_max_speed: int,
+                 scoreboard_title, scoreboard_geometry, scoreboard_icon_path,
+                 scoreboard_text_color, scoreboard_button_color, scoreboard_button_hover_color, scoreboard_txt_file_path
+                 ):
         # screen and text settings
         self.window = window
         self.window_margin = window_margin
@@ -71,6 +75,15 @@ class Game:
         self.targeted_dementor_type = random.randint(0, len(self.dementor_images)-1)
         self.targeted_dementor = self.dementor_images[self.targeted_dementor_type]
         self.targeted_dementor_rect = self.targeted_dementor.get_rect()
+
+        # scoreboard
+        self.scoreboard_title = scoreboard_title
+        self.scoreboard_geometry = scoreboard_geometry
+        self.scoreboard_icon_path = scoreboard_icon_path,
+        self.scoreboard_text_color = scoreboard_text_color
+        self.scoreboard_button_color = scoreboard_button_color
+        self.scoreboard_button_hover_color = scoreboard_button_hover_color
+        self.scoreboard_txt_file_path = scoreboard_txt_file_path
 
     # method to update game
     def update(self):
@@ -170,6 +183,7 @@ class Game:
                 self.game_player.lives -= 1
                 if self.game_player.lives <= 0:
                     self.pause_game(f"Final score: {self.score}", "Press Enter to play again!")
+                    self.draw_scoreboard()
                     self.reset_game()
                 self.game_player.starting_position_reset()
 
@@ -249,3 +263,10 @@ class Game:
         pygame.mixer_music.rewind()
         # call start new round method to start the game
         self.start_new_round()
+
+    def draw_scoreboard(self):
+        scoreboard = Scoreboard(self.scoreboard_title, self.scoreboard_geometry,
+                                self.scoreboard_icon_path, self.scoreboard_text_color,
+                                self.scoreboard_button_color, self.scoreboard_button_hover_color,
+                                self.scoreboard_txt_file_path, self.score)
+        scoreboard.mainloop()
