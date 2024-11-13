@@ -64,7 +64,7 @@ if __name__ == "__main__":
                    consts.SCOREBOARD_TEXT_COLOR, consts.SCOREBOARD_BUTTON_COLOR,
                    consts.SCOREBOARD_HOVER_COLOR, consts.SCOREBOARD_TXT_FILE_PATH)
 
-    # main game cycle
+    # main game
     running = True
     my_game.pause_game(consts.GAME_TITLE, consts.LAUNCH_TEXT)
     my_game.start_new_round()
