@@ -1,3 +1,4 @@
 # This file records the results of the game "The Golden Snitch while avoiding or defeating Dementors and Bludgers".
 Pedrozo : 4466
 Janek : 2494
+Killer : 742
