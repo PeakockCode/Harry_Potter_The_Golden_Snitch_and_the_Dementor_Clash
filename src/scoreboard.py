@@ -1,3 +1,4 @@
+# Import necessary modules
 import tkinter
 import customtkinter
 
@@ -8,16 +9,16 @@ class Scoreboard(customtkinter.CTk):
                  text_color, button_color, button_hover_color, txt_file_path, score):
         super().__init__()
 
-        # define window
+        # Initialize the window with a title and geometry
         self.title(title)
         self.geometry(geometry)
         self.resizable(False, False)
         self.iconbitmap(icon_path)
 
-        # set dark mode
+        # Set the appearance mode of the window to dark (using customtkinter)
         customtkinter.set_appearance_mode("dark")
 
-        # define fonts, colors, and padding
+        # Store the parameters for color schemes, text file path, and score
         self.main_color = text_color
         self.button_color = button_color
         self.button_hover_color = button_hover_color
@@ -25,20 +26,21 @@ class Scoreboard(customtkinter.CTk):
         # add score
         self.score = score
 
-        # adding frames
+        # Create frames to organize UI elements
         self.heading_frame = customtkinter.CTkFrame(master=self)
         self.input_frame = customtkinter.CTkFrame(master=self)
         self.warning_frame = customtkinter.CTkFrame(master=self)
         self.results_frame = customtkinter.CTkFrame(master=self)
         self.button_frame = customtkinter.CTkFrame(master=self)
 
+        # Pack frames with some padding
         self.heading_frame.pack(padx=2, pady=2)
         self.input_frame.pack(padx=2, pady=2)
         self.warning_frame.pack(padx=2, pady=4)
         self.results_frame.pack(padx=2, pady=2)
         self.button_frame.pack(padx=2, pady=2)
 
-        # Heading frame - add labels
+        # Heading frame - Add labels to show game instructions and score
         self.name_label = customtkinter.CTkLabel(self.heading_frame, width=100, height=13,
                                                  text="Reveal your name for the records...",
                                                  text_color=self.main_color)
@@ -47,7 +49,7 @@ class Scoreboard(customtkinter.CTk):
                                                   width=290, height=13, text_color=self.main_color)
         self.score_label.grid(row=0, column=1, padx=(1, 0), pady=2, ipadx=1, sticky="nw")
 
-        # results frame - create results list with scrollbar
+        # Results frame - Create a listbox with scrollbar to show the scoreboard
         self.results_list = tkinter.Listbox(self.results_frame, width=35, height=13, selectborderwidth=3,
                                             bg="#000000", fg=self.main_color, font=("Verdana", 12))
         self.results_list.grid(row=0, column=0, sticky="nsew")
@@ -56,7 +58,7 @@ class Scoreboard(customtkinter.CTk):
         vertical_scrollbar.grid(row=0, column=1, sticky="ns")
         self.results_list.configure(yscrollcommand=vertical_scrollbar.set)
 
-        # input frame - name input, score
+        # Input frame - Provide entry field for player name and score display
         self.name_input = customtkinter.CTkEntry(self.input_frame, width=270)
         self.name_input.grid(row=0, column=0, padx=4, pady=2, sticky="nw")
         self.score_label = customtkinter.CTkLabel(self.input_frame, text=self.score, width=120)
@@ -65,13 +67,11 @@ class Scoreboard(customtkinter.CTk):
                                                         fg_color=self.button_color, hover_color=self.button_hover_color,
                                                         border_width=1, command=self.add_score)
         self.add_score_button.grid(row=0, column=2, padx=6, pady=2, ipadx=1, sticky="ne")
-        # warning frame - warning info line (show warning when it is necessary)
+        # Warning frame - Display warning if any action is incorrect (e.g., duplicate name)
         self.warning_info = customtkinter.CTkLabel(self.warning_frame, text="", width=478, height=10)
         self.warning_info.grid(row=0, column=0, padx=4, pady=4, ipadx=2, ipady=2, sticky="news")
 
-        # button frame
-        # creating buttons: to remove score, to clear the score list, to save score list and to quit the table
-
+        # Button frame - Buttons to manage scores: remove, clear, save, and quit
         self.remove_score = customtkinter.CTkButton(self.button_frame, text="Remove", width=5, border_width=1,
                                                     fg_color=self.button_color, hover_color=self.button_hover_color,
                                                     command=self.remove_score)
@@ -89,9 +89,10 @@ class Scoreboard(customtkinter.CTk):
         self.save_score.grid(row=0, column=2, padx=5, pady=8, ipadx=10)
         self.quit_table.grid(row=0, column=3, padx=5, pady=8, ipadx=10)
 
-        # load results to the table
+        # Load results from the text file into the results list (after 100ms delay)
         self.after(100, self.load_results())
 
+    # Function to add a new player and their score to the scoreboard if the player name is valid.
     def add_score(self):
         # Adds a new player and score to the list
         if self.check_player(self.name_input.get()):
@@ -100,6 +101,7 @@ class Scoreboard(customtkinter.CTk):
             self.score_label.configure(text="")
             self.warning_info.configure(text="")
 
+    # Function to checks if the player name is already in the results list. Show the warning message if the name already exists.
     def check_player(self, player_name):
         results = self.results_list.get(0, tkinter.END)
         for one_line in results:
@@ -111,12 +113,15 @@ class Scoreboard(customtkinter.CTk):
         self.warning_info.configure(text="")
         return True
 
+    # Function to remove the selected score from the scoreboard.
     def remove_score(self):
         self.results_list.delete(tkinter.ANCHOR)
 
+    # Function to clear all scores from the scoreboard.
     def delete_all_results(self):
         self.results_list.delete(0, tkinter.END)
 
+    # Function to save the current results list to a text file.
     def save_results(self):
         with open(self.txt_file_path, "w", encoding="utf8") as results_file:
             results = self.results_list.get(0, tkinter.END)
@@ -126,10 +131,12 @@ class Scoreboard(customtkinter.CTk):
                 else:
                     results_file.write(f"{one_result}\n")
 
+    # Function to close the scoreboard window.
     def close_scoreboard(self):
         self.withdraw()
         self.quit()
 
+    # Function to load the results from a text file and displays them in the scoreboard.
     def load_results(self):
         # Loads tasks from a text file to show scoreboard
         try:
@@ -138,16 +145,3 @@ class Scoreboard(customtkinter.CTk):
                     self.results_list.insert(tkinter.END, one_line)
         except FileExistsError:
             print("Error. Cannot find file with tasks.")
-
-
-# SCOREBOARD_TITLE = "Harry Potter: The Golden Snitch and The Dementor Clash"
-# SCOREBOARD_GEOMETRY = "550x500+700+250"
-# SCOREBOARD_ICON = "../assets/images/icons/hp_icon.ico"
-# SCOREBOARD_FONT_TYPE_PATH = "../assets/fonts/Harry.ttf",
-# SCOREBOARD_TEXT_COLOR = "#EEBA30"
-# SCOREBOARD_BUTTON_COLOR = "#740001"
-# SCOREBOARD_HOVER_COLOR = "#AE0001"
-# SCOREBOARD_TXT_FILE_PATH = "../results/score.txt"
-# scoreboard = Scoreboard(SCOREBOARD_TITLE, SCOREBOARD_GEOMETRY, SCOREBOARD_ICON, SCOREBOARD_TEXT_COLOR,
-#                         SCOREBOARD_BUTTON_COLOR, SCOREBOARD_HOVER_COLOR, SCOREBOARD_TXT_FILE_PATH, 2555)
-# scoreboard.mainloop()
