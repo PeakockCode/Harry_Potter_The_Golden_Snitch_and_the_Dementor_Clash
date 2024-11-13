@@ -1,6 +1,8 @@
+# Import necessary modules
 import pygame
 import sys
 
+# Import game configuration constants and classes
 from config import consts
 from src.game import Game
 from src.dementor import Dementor
@@ -8,16 +10,16 @@ from src.player import Player
 from src.golden_snitch import GoldenSnitch
 from src.enemy import Enemy
 
-
+# Main entry point of the game
 if __name__ == "__main__":
 
-    # game init
+    # game init and set up Pygame
     pygame.init()
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode(consts.GAME_RESOLUTION)
     pygame.display.set_caption(consts.SCREEN_TITLE)
 
-    # add dementor group
+    # Create and add Dementors to the game
     dementor_group = pygame.sprite.Group()
     for _ in range(len(consts.DEMENTOR_IMAGES_PATH)):
         dementor = Dementor(consts.GAME_RESOLUTION,
@@ -26,7 +28,7 @@ if __name__ == "__main__":
                             (consts.DEMENTOR_IMAGES_PATH[_],), _)
         dementor_group.add(dementor)
 
-    # add golden_snitch
+    # Create and add Golden Snitches to the game
     golden_snitch_group = pygame.sprite.Group()
     for _ in range(consts.NUMBER_OF_GOLDEN_SNITCHES):
         golden_snitch = GoldenSnitch(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
@@ -34,7 +36,7 @@ if __name__ == "__main__":
                                      consts.GOLDEN_SNITCH_BASE_MAX_SPEED, consts.GOLDEN_SNITCH_PATHS)
         golden_snitch_group.add(golden_snitch)
 
-    # add bludger
+    # Create and add Bludgers to the game
     bludger_group = pygame.sprite.Group()
     for _ in range(consts.NUMBER_OF_BLUDGERS):
         bludger = Enemy(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING,
@@ -42,7 +44,7 @@ if __name__ == "__main__":
                         consts.BLUDGER_MAX_SPEED, consts.BLUDGER_PATH)
         bludger_group.add(bludger)
 
-    # add player
+    # Create and add the player to the game
     player_group = pygame.sprite.Group()
     player = Player(consts.GAME_RESOLUTION, consts.GAME_BOTTOM_SPACING, consts.GAME_TOP_SPACING,
                     consts.PLAYER_PATHS, consts.PLAYER_SPEED,
@@ -51,7 +53,7 @@ if __name__ == "__main__":
                     consts.PLAYER_CATCH_SOUND, consts.PLAYER_HIT_SOUND)
     player_group.add(player)
 
-    # init the game
+    # Initialize the main game object with required configurations and components
     my_game = Game(screen, consts.BG_PATH, consts.BG_BASE_COORDINATES,
                    consts.SCREEN_MARGIN, consts.PLAYGROUND_BORDER_WIDTH,
                    consts.TEXT_MARGIN, consts.GAME_FPS, consts.GAME_RESOLUTION,
@@ -64,37 +66,41 @@ if __name__ == "__main__":
                    consts.SCOREBOARD_TEXT_COLOR, consts.SCOREBOARD_BUTTON_COLOR,
                    consts.SCOREBOARD_HOVER_COLOR, consts.SCOREBOARD_TXT_FILE_PATH)
 
-    # main game
+    # Main game loop
     running = True
-    my_game.pause_game(consts.GAME_TITLE, consts.LAUNCH_TEXT)
-    my_game.start_new_round()
+    my_game.pause_game(consts.GAME_TITLE, consts.LAUNCH_TEXT) # Display initial pause screen with game title and launch text
+    my_game.start_new_round() # Start the first round of the game
     while running:
+        # Event handling loop
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    player.back_to_safe_zone()
+                    player.back_to_safe_zone() # Move player back to the safe zone when space is pressed
             if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                sys.exit()
+                running = False # Exit the game loop if the quit event is detected
+                pygame.quit() # Close the Pygame window
+                sys.exit() # Terminate the program
 
+        # Draw the background for the playground
         screen.blit(my_game.playground_bg, my_game.playground_bg_rect.topleft)
 
-        # dementor and player draw
+        # Draw game elements: Dementors, Golden Snitches, Bludgers, and the Player
         dementor_group.draw(screen)
         golden_snitch_group.draw(screen)
         bludger_group.draw(screen)
         player_group.draw(screen)
 
-        # dementor and player update
+        # Update game elements' state
         dementor_group.update()
         golden_snitch_group.update()
         bludger_group.update()
         player_group.update()
 
-        # game update
+        # Update the game state and draw additional elements (e.g., instructions)
         my_game.update()
         my_game.draw(consts.INSTRUCTION_TEXT)
 
+        # Refresh the display to show the updated frame
         pygame.display.flip()
+        # Control the frame rate of the game
         clock.tick(consts.GAME_FPS)
